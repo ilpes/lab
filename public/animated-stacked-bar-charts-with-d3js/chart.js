@@ -1,6 +1,8 @@
 /**
  * Animated stacked bar charts with d3.js
  *
+ * @author ilpes
+ *
  * @type {{init: Chart.init}}
  */
 Chart = (function () {

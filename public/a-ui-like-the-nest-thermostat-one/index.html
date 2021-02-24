@@ -8,6 +8,14 @@
     <title>A UI like the NEST thermostat one</title>
     <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,700,500' rel='stylesheet' type='text/css'>
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9T9TWC7ZF3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-9T9TWC7ZF3');
+    </script>
 
     <style>
 
@@ -116,6 +124,43 @@
             text-transform: uppercase;
             font-size: 18px;
 
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: right;
+            width: 100%;
+            display: none
+        }
+
+        footer a.cta {
+            display: inline-block;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 42px;
+            padding-right: 20px;
+            padding-left: 20px;
+            border: 2px solid #000;
+            margin: 0 10px 20px 0;
+            text-decoration: none;
+            color: #000;
+            opacity: .6;
+            transition: opacity 200ms ease-in-out
+        }
+
+        footer a.cta:hover {
+            opacity: 1
+        }
+
+        @media all and (min-width: 600px) {
+            footer {
+                display: block
+            }
         }
 
     </style>
@@ -328,6 +373,11 @@
 </div>
 
 <div class="temperature"></div>
+
+<footer>
+    <a href="https://twitter.com/intent/tweet?text=A%20UI%20like%20the%20NEST%20thermostat%20one%20by%20@ilpes%20https://ilpes.it/a-ui-like-the-nest-thermostat-one" class="cta" target="_blank">Tweet this</a>
+    <a href="https://ilpes.it/a-ui-like-the-nest-thermostat-one" class="cta" target="_blank">Read on ilpes.it</a>
+</footer>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>

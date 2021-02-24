@@ -387,7 +387,7 @@ Racer.Car = function (path, acceleration, friction, speed, sliding_friction) {
                 _pathExit = Racer.Utils.drawLine(point, point.add(_velocity.multiply(50)), null, 0);
                 _elapsedExit = 0;
                 _rotationExit = ROTATION_ON_EXIT;
-                _throttle = 0;s
+                _throttle = 0;
                 _in = false;
 
                 let carCrashedEvent = new CustomEvent("CarCrashed");

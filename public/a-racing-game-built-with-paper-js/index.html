@@ -4,10 +4,19 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
-    <title>A Racing Game with Paper.js and SVG</title>
+    <title>Demo | A racing game built with Paper.js</title>
 
     <link href='//fonts.googleapis.com/css?family=Candal' rel='stylesheet' type='text/css'>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9T9TWC7ZF3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-9T9TWC7ZF3');
+    </script>
 
     <style>
 
@@ -15,7 +24,6 @@
             box-sizing: border-box;
             -webkit-touch-callout: none;
             -webkit-user-select: none;
-            -khtml-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
@@ -163,6 +171,43 @@
             font-size: 12px;
         }
 
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: right;
+            width: 100%;
+            display: none
+        }
+
+        footer a.cta {
+            display: inline-block;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 42px;
+            padding-right: 20px;
+            padding-left: 20px;
+            border: 2px solid #000;
+            margin: 0 10px 20px 0;
+            text-decoration: none;
+            color: #000;
+            opacity: .6;
+            transition: opacity 200ms ease-in-out
+        }
+
+        footer a.cta:hover {
+            opacity: 1
+        }
+
+        @media all and (min-width: 600px) {
+            footer {
+                display: block
+            }
+        }
+
     </style>
 
 
@@ -210,6 +255,11 @@
     </div>
     <canvas id="track_canvas" width="900" height="420"></canvas>
 </div>
+
+<footer>
+    <a href="https://twitter.com/intent/tweet?text=A%20racing%20game%20built%20with%20Paper.js%20by%20@ilpes%20https://ilpes.it/a-racing-game-built-with-paper-js" class="cta">Tweet this</a>
+    <a href="https://ilpes.it/a-racing-game-built-with-paper-js" class="cta">Read on ilpes.it</a>
+</footer>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/paper.js/0.10.3/paper-full.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>

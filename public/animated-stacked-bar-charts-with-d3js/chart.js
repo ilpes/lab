@@ -230,7 +230,7 @@ Chart = (function () {
             .scale(_y)
             .orient("left")
             .tickSize(-_chartSize.width)
-            .ticks(5)
+            .ticks(5);
 
         _chartD3.append("g")
             .attr("class", "x axis")

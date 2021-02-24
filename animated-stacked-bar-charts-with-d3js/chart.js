@@ -328,8 +328,7 @@ Chart = (function () {
             })
             .attr("cy", 12)
             .attr("r", 4)
-            .attr("fill", "#fff")
-
+            .attr("fill", "#fff");
 
         tooltip.append("rect").attr("class", "h").attr("width", 60).attr("fill", 'rgba(0,0,0,0)').attr("height", _chartSize.height).attr("y", -_chartSize.height).attr("x", -30);
         update();

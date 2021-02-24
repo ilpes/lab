@@ -1,0 +1,74 @@
+[
+  {
+    "hold": 0,
+    "paid": 3046,
+    "overdue": 935,
+    "label": "Gen"
+  },
+  {
+    "hold": 0,
+    "paid": 4390,
+    "overdue": 0,
+    "label": "Feb"
+  },
+  {
+    "hold": 0,
+    "paid": 2500,
+    "overdue": 1230,
+    "label": "Mar"
+  },
+  {
+    "hold": 0,
+    "paid": 1554,
+    "overdue": 351,
+    "label": "Apr"
+  },
+  {
+    "hold": 2295,
+    "paid": 1475,
+    "overdue": 0,
+    "label": "Mag"
+  },
+  {
+    "hold": 0,
+    "paid": 2430,
+    "overdue": 0,
+    "label": "Giu"
+  },
+  {
+    "hold": 0,
+    "paid": 4175,
+    "overdue": 0,
+    "label": "Lug"
+  },
+  {
+    "hold": 0,
+    "paid": 1906,
+    "overdue": 956,
+    "label": "Ago"
+  },
+  {
+    "hold": 0,
+    "paid": 4968,
+    "overdue": 0,
+    "label": "Set"
+  },
+  {
+    "hold": 1957,
+    "paid": 751,
+    "overdue": 0,
+    "label": "Ott"
+  },
+  {
+    "hold": 2730,
+    "paid": 4216,
+    "overdue": 0,
+    "label": "Nov"
+  },
+  {
+    "hold": 4482,
+    "paid": 943,
+    "overdue": 0,
+    "label": "Dic"
+  }
+]

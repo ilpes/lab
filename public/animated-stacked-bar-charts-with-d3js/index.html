@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+
+    <title>Demo | Animated stacked bar charts with D3.js</title>
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,700,500' rel='stylesheet' type='text/css'>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9T9TWC7ZF3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-9T9TWC7ZF3');
+    </script>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            height: 100%;
+            width: 100%;
+            font-family: 'Ubuntu';
+            overflow: hidden;
+            -webkit-overflow-scrolling: touch;
+            padding-top: 100px;
+        }
+
+        div#container {
+            width: 880px;
+            margin: auto;
+        }
+
+        h4 {
+            width: 500px;
+            float: left;
+            font-size: 72px;
+            line-height: 1em;
+            margin: 0 0 0 20px;
+        }
+
+        div.year-select {
+            padding: 0;
+            margin: 0;
+            margin-top: 30px;
+            border: 1px solid #ccc;
+            width: 120px;
+            border-radius: 3px;
+            overflow: hidden;
+            background-color: #fff;
+            position: relative;
+            float: right;
+        }
+
+        div.year-select i {
+            position: absolute;
+            right: 5px;
+            top: 6px;
+            font-size: 14px;
+        }
+
+        div.year-select select {
+            font-size: 14px;
+            padding: 5px 8px;
+            width: 130%;
+            border: none;
+            box-shadow: none;
+            background-color: transparent;
+            background-image: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+
+        div.year-select select:focus {
+            outline: none;
+        }
+
+        svg#chart {
+            width: 880px;
+            height: 320px;
+            margin: auto;
+            clear: both;
+        }
+
+        svg#chart path.line {
+            stroke: #333333;
+            stroke-width: 4;
+            fill: none;
+            stroke-linejoin: round;
+        }
+
+        svg#chart g.status-bar {
+            opacity: .5;
+        }
+
+        svg#chart .axis line {
+            shape-rendering: crispEdges;
+            stroke: #333333;
+        }
+
+        svg#chart .x.axis path {
+            display: none;
+        }
+
+        svg#chart .x.axis line {
+            display: none;
+        }
+
+        svg#chart .x.axis text {
+            font-size: 16px;
+            font-weight: bold;
+            fill: #999;
+        }
+
+        svg#chart .y.axis path {
+            display: none;
+        }
+
+        svg#chart .y.axis line {
+            stroke: #ccc;
+            stroke-width: 1;
+            opacity: .5;
+        }
+
+        svg#chart .y.axis text {
+            font-family: Arial;
+            font-size: 10px;
+            fill: #ccc;
+        }
+
+        svg#chart g.tooltip {
+            fill: red;
+            stroke-width: 0;
+            display: none;
+        }
+
+        svg#chart g.tooltip text.t {
+            fill: #fff;
+            font-family: Arial;
+            font-size: 10px;
+        }
+
+        svg#chart g.tooltip path.r1 {
+            fill: #333333;
+        }
+
+        svg#chart g.tooltip path.r4 {
+            fill: #a42c0f;
+        }
+
+        svg#chart g.tooltip rect.r2 {
+            fill: #999999;
+        }
+
+        svg#chart g.tooltip rect.r3 {
+            fill: #006693;
+        }
+
+        svg#chart {
+            display: block;
+            width: 880px;
+            height: 320px;
+        }
+
+        svg#chart g#chart-bg text {
+            font-family: Arial;
+            font-size: 10px;
+            fill: #ccc;
+        }
+
+        svg#chart g#chart-bg line {
+            stroke: #ccc;
+        }
+
+        svg#chart g#chart-status-per-month text {
+            font-size: 16px;
+            font-weight: bold;
+            fill: #999;
+        }
+
+        svg#chart g#chart-status-per-month rect {
+            opacity: .5;
+        }
+
+        svg#chart g#chart-status-per-month rect.rosso {
+            fill: #a42c0f;
+        }
+
+        svg#chart g#chart-status-per-month rect.blu {
+            fill: #006693;
+        }
+
+        svg#chart g#chart-status-per-month rect.gray {
+            fill: #999999;
+        }
+
+        svg#chart g#chart-line polyline {
+            fill: none;
+            stroke: #353535;
+            stroke-width: 4;
+        }
+
+        svg#chart g#chart-dots circle {
+            fill: #353535;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: right;
+            width: 100%;
+            display: none
+        }
+
+        footer a.cta {
+            display: inline-block;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 42px;
+            padding-right: 20px;
+            padding-left: 20px;
+            border: 2px solid #000;
+            margin: 0 10px 20px 0;
+            text-decoration: none;
+            color: #000;
+            opacity: .6;
+            transition: opacity 200ms ease-in-out
+        }
+
+        footer a.cta:hover {
+            opacity: 1
+        }
+
+        @media all and (min-width: 600px) {
+            footer {
+                display: block
+            }
+        }
+
+    </style>
+
+
+</head>
+
+
+<body>
+
+<div id="container">
+    <h4>€ 0</h4>
+    <div class="year-select">
+        <i class="fa fa-chevron-down"></i>
+        <select id="years">
+            <option value="2016">2016</option>
+            <option value="2015">2015</option>
+            <option value="2014">2014</option>
+        </select>
+    </div>
+    <svg version="1.1" id="chart" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+         width="880" height="320" x="0px" y="0px" viewBox="0 0 880 320" enable-background="new 0 0 880 320"
+         xml:space="preserve"></svg>
+</div>
+
+<footer>
+    <a href="https://twitter.com/intent/tweet?text=Animated%20stacked%20bar%20charts%20with%20D3.js%20by%20@ilpes%20https://ilpes.it/animated-stacked-bar-charts-with-d3js" class="cta"  target="_blank">Tweet this</a>
+    <a href="https://ilpes.it/animated-stacked-bar-charts-with-d3js" class="cta"  target="_blank">Read on ilpes.it</a>
+</footer>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<script src="./chart.js"></script>
+
+<script>
+    Chart.init();
+</script>
+
+
+</body>
+</html>
